@@ -7,12 +7,12 @@ namespace Dorfverwaltung
     class Waffe
     {
         /// <summary>
-        /// Waffe type
+        /// Waffentyp
         /// </summary>
         public string typ { get; set; }
 
         /// <summary>
-        /// Die nagie Werte von die Waffe
+        /// Die Magie-Werte der Waffen
         /// </summary>
         public int magie { get; set; }
     }

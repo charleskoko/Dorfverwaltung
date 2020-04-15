@@ -12,6 +12,9 @@ namespace Dorfverwaltung
 
         public List<Zwerg> zwergen { get; set; }
 
+        /// <summary>
+        /// Summe der Machtfaktoren der Zwerge, die ein Stamm besitzt
+        /// </summary>
         public int machfaktor
         {
             get
@@ -26,9 +29,9 @@ namespace Dorfverwaltung
         }
 
         /// <summary>
-        /// Rechnen die Steur für eine Stamm
+        /// Errechnen der Steuer für einen Stamm
         /// </summary>
-        /// <param name="machtfaktor">sum of each dwarf machtfaktor</param>
+        /// <param name="machtfaktor"></param>
         /// <returns></returns>
         public double SteuerRechnung(int machtfaktor)
         {

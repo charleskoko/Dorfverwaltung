@@ -7,6 +7,13 @@ namespace Dorfverwaltung
     class Menu
     {
         static int index = 0;
+
+        /// <summary>
+        /// Hauptfunktion die das Hauptmenü anzeigt und die Benutzeroberfläche
+        /// </summary>
+        /// <param name="listWaffe"></param>
+        /// <param name="listStamm"></param>
+        /// <param name="listZwegen"></param>
         public void Hauptmenü(List<Waffe> listWaffe, List<Stamm> listStamm, List<Zwerg> listZwegen)
         {
 
@@ -15,7 +22,7 @@ namespace Dorfverwaltung
                 "Gesamtsteuer",
                 "Zwergenstämme",
                 "Neues Artefakt vergeben",
-                "Artefakt Zurucknemmen",
+                "Artefakt zurücknehmen",
                 "Exit"
             };
 
@@ -31,21 +38,21 @@ namespace Dorfverwaltung
                     Gesamtsteuer(listStamm);
                 }
 
-                if (selectedMenuItem == "Artefakt Zurucknemmen")
+                if (selectedMenuItem == "Artefakt zurücknehmen")
                 {
                     Console.Clear();
                     int count = 1, userEingabe, max=3 ;
 
                     foreach (Zwerg zwerg in listZwegen)
                     {
-                        Console.WriteLine(count + ": " + "zwerge name: " + zwerg.name);
+                        Console.WriteLine(count + ": " + "Name des Zwerges: " + zwerg.name);
                         count++;
                     }
 
                     do
                     {
                         Console.WriteLine("");
-                        Console.Write("Walln Sie ein nummer: ");
+                        Console.Write("Wählen Sie eine Nummer ");
                         int.TryParse(Console.ReadLine(), out userEingabe);                                         
 
                     }
@@ -74,6 +81,11 @@ namespace Dorfverwaltung
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         private static string drawMenu(List<string> items)
         {
             for (int i = 0; i < items.Count; i++)
@@ -116,6 +128,10 @@ namespace Dorfverwaltung
             return "";
         }
 
+        /// <summary>
+        /// Funktion die die Gesamtsteuer anzeigt und berechnet
+        /// </summary>
+        /// <param name="listStamm"></param>
         private static void Gesamtsteuer(List<Stamm> listStamm)
         {
             double sum = 0;
@@ -142,6 +158,10 @@ namespace Dorfverwaltung
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="listStamm"></param>
         private static void Zwergenstämme(List<Stamm> listStamm)
         {
             Console.Clear();
@@ -167,19 +187,25 @@ namespace Dorfverwaltung
             Console.Write("\t\t******************"); Console.Write("   ******************"); Console.WriteLine("\t\t\t\t******************");
             Console.Write("\t\t*     " + listStamm[0].zwergen[0].name + "      *"); Console.Write("   *     " + listStamm[0].zwergen[1].name + "    *"); Console.WriteLine("\t\t\t\t*     " + listStamm[1].zwergen[0].name + "      *");
             Console.Write("\t\t******************"); Console.Write("   ******************"); Console.WriteLine("\t\t\t\t******************");
-            Console.Write("\t\t* alter:" + listStamm[0].zwergen[0].alter + "      *"); Console.Write("   * alter:" + listStamm[0].zwergen[1].alter + "       *"); Console.WriteLine("\t\t\t\t*  alter:" + listStamm[1].zwergen[0].alter + "     *");
+            Console.Write("\t\t* Alter:" + listStamm[0].zwergen[0].alter + "      *"); Console.Write("   * Alter:" + listStamm[0].zwergen[1].alter + "       *"); Console.WriteLine("\t\t\t\t*  Alter:" + listStamm[1].zwergen[0].alter + "     *");
             Console.Write("\t\t* Machtfaktor:" + listStamm[0].zwergen[0].machfaktor + " *"); Console.Write("   * Machtfaktor:" + listStamm[0].zwergen[1].machfaktor + " *"); Console.WriteLine("\t\t\t\t*  Machfaktor:" + listStamm[1].zwergen[0].machfaktor + "  *");
             Console.Write("\t\t****************** "); Console.Write("  ******************"); Console.WriteLine("\t\t\t\t******************");
             Console.Read();
         }
 
+        /// <summary>
+        /// Funktion die Wahl des Benutzers speichert
+        /// </summary>
+        /// <param name="choice"></param>
+        /// <param name="themax"></param>
+        /// <returns></returns>
         private static int TrueChoice(int choice, int themax)
         {
             int trueChoice = 0;
             do
             {
                 Console.WriteLine("");
-                Console.Write("Wallen Sie ein nummer: ");
+                Console.Write("Wählen Sie eine Nummer: ");
                 int.TryParse(Console.ReadLine(), out choice);
             }
             while (choice < 1 || choice > themax);
@@ -188,6 +214,11 @@ namespace Dorfverwaltung
             return trueChoice;
         }
 
+        /// <summary>
+        /// Funktion die ein neues Artefakt an Zwerg gibt
+        /// </summary>
+        /// <param name="listWaffe"></param>
+        /// <param name="listZwegen"></param>
         private static void Artefakt(List<Waffe> listWaffe, List<Zwerg> listZwegen)
         {
             #region Declaration
@@ -209,7 +240,7 @@ namespace Dorfverwaltung
             foreach (Waffe artefakt in listWaffe)
             {
                 count++;
-                Console.WriteLine(count + ": " + "Type: " + artefakt.typ + " / Magie: " + artefakt.magie);
+                Console.WriteLine(count + ": " + "Typ: " + artefakt.typ + " / Magie: " + artefakt.magie);
             }
 
             userEingabe = TrueChoice(userEingabe, max);
@@ -257,6 +288,10 @@ namespace Dorfverwaltung
             #endregion
         }
 
+        /// <summary>
+        /// Funktion die Artefakt entfernt
+        /// </summary>
+        /// <param name="zwerg"></param>
         public static void  ArtefaktZurucknemmen( Zwerg zwerg)
         {
             int count = 1;
@@ -278,7 +313,7 @@ namespace Dorfverwaltung
             }
             else
             {
-                Console.WriteLine(zwerg.name + " has no weapon!");
+                Console.WriteLine(zwerg.name + " Hat keine Waffe");
                 int.TryParse(Console.ReadLine(), out userEingabe);
             }
             
